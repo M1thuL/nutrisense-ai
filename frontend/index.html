@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriSense AI 🥗</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="stitch-ui.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Landing / Login -->
+        <section id="login-screen" class="stitch-card active-screen text-center flex-column justify-center align-center h-100vh">
+            <h1 class="color-primary">NutriSense AI</h1>
+            <p>Your smart food and health assistant</p>
+            <button id="btn-login" class="stitch-button primary mt-2">Sign in with Google</button>
+        </section>
+
+        <!-- Main Dashboard Layout -->
+        <section id="main-dashboard" class="hidden">
+            <header class="stitch-header">
+                <h2>Dashboard</h2>
+                <div id="user-info" class="flex align-center"></div>
+            </header>
+
+            <main class="container mb-5">
+                <!-- Health Profile Notice -->
+                <div id="profile-notice" class="stitch-card highlight-card mt-2 hidden">
+                    <h3>Complete Your Health Profile</h3>
+                    <p>Help us personalize your recommendations.</p>
+                    <button id="btn-go-profile" class="stitch-button secondary-variant mt-1">Set Up Profile</button>
+                </div>
+
+                <!-- Daily Summary tracker comp injected here -->
+                <div id="meal-tracker-container" class="mt-2 text-center"></div>
+
+                <!-- Navigation Tabs -->
+                <div class="stitch-tabs mt-2 mb-2">
+                    <button class="stitch-tab active" data-target="meal-analyzer-view">Analyzer</button>
+                    <button class="stitch-tab" data-target="recommendations-view">Suggestions</button>
+                    <button class="stitch-tab" data-target="food-search-view">Search</button>
+                    <button class="stitch-tab" data-target="profile-view">Profile</button>
+                </div>
+
+                <!-- Component Views -->
+                <div id="meal-analyzer-view" class="view-panel active-panel"></div>
+                <div id="recommendations-view" class="view-panel hidden"></div>
+                <div id="food-search-view" class="view-panel hidden"></div>
+                <div id="profile-view" class="view-panel hidden"></div>
+            </main>
+        </section>
+    </div>
+
+    <!-- Firebase and Components -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="components/meal-analyzer.js"></script>
+    <script type="module" src="components/meal-tracker.js"></script>
+    <script type="module" src="components/recommendations.js"></script>
+    <script type="module" src="components/health-profile.js"></script>
+    <script type="module" src="components/food-search.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
