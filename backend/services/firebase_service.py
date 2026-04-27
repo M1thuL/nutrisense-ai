@@ -1,17 +1,15 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 import os
+from dotenv import load_dotenv
 
-# Initialize Firebase Admins SDK
-# In production, use GOOGLE_APPLICATION_CREDENTIALS env var
-try:
-    if not firebase_admin._apps:
-        # Default initialization uses GOOGLE_APPLICATION_CREDENTIALS
-        firebase_admin.initialize_app()
-    db = firestore.client()
-except Exception as e:
-    print(f"Firebase initialization warning: {e}")
-    db = None
+load_dotenv()
+
+if not firebase_admin._apps:
+    cred = credentials.Certificate("serviceaccount.json")
+    firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 def save_meal(user_id: str, meal_data: dict):
     if db:

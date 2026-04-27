@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from services.gemini_service import gemini_service
-from services.firebase_service import save_meal
+from services.gemini_service import analyze_meal
+from services.firebase_service import save_meal, db
 import datetime
 
 router = APIRouter(prefix="/api/analyze", tags=["Analyze"])
@@ -11,11 +11,11 @@ class AnalyzeRequest(BaseModel):
     user_id: str
 
 @router.post("/")
-async def analyze_meal(request: AnalyzeRequest):
+async def handle_analyze_meal(request: AnalyzeRequest):
     if not request.meal_description or not request.user_id:
         raise HTTPException(status_code=400, detail="Missing required fields")
         
-    analysis_result = gemini_service.analyze_meal(request.meal_description)
+    analysis_result = analyze_meal(request.meal_description)
     
     if "error" in analysis_result:
         raise HTTPException(status_code=500, detail=analysis_result["error"])

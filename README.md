@@ -20,7 +20,6 @@ nutritional gaps, time of day, and dietary goals.
 - Gemini 1.5 Flash — AI-powered meal analysis and recommendations
 - Firebase Auth — Google Sign-In authentication  
 - Firebase Firestore — Meal logs and user profiles
-- Firebase Storage — Meal image uploads
 - Google Cloud Run — Scalable serverless backend deployment
 - Firebase Hosting — Frontend deployment
 

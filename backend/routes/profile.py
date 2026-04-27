@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from services.firebase_service import save_user_profile
+from services.firebase_service import save_user_profile, db
 
 router = APIRouter(prefix="/api/profile", tags=["Profile"])
 
@@ -14,7 +14,7 @@ class ProfileRequest(BaseModel):
     preferences: list[str]
 
 @router.post("/")
-async def save_profile(request: ProfileRequest):
+async def handle_save_profile(request: ProfileRequest):
     # Calculate BMI
     height_m = request.height_cm / 100
     bmi = request.weight_kg / (height_m * height_m) if height_m > 0 else 0

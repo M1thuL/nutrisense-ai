@@ -7,3 +7,6 @@ firebase-debug.log
 .DS_Store
 venv/
 *.egg-info/
+backend/serviceaccount.json
+backend/.env
+*.json.key

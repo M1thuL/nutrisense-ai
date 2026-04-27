@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import analyze, recommend, nutrition, profile
+from routes.analyze import router as analyze_router
+from routes.recommend import router as recommend_router
+from routes.nutrition import router as nutrition_router
+from routes.profile import router as profile_router
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
@@ -18,10 +20,10 @@ app.add_middleware(
 )
 
 # Include API routes
-app.include_router(analyze.router)
-app.include_router(recommend.router)
-app.include_router(nutrition.router)
-app.include_router(profile.router)
+app.include_router(analyze_router)
+app.include_router(recommend_router)
+app.include_router(nutrition_router)
+app.include_router(profile_router)
 
 @app.get("/")
 async def root():
